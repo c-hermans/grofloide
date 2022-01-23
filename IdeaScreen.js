@@ -1,19 +1,6 @@
 import React from 'react';
 import { View, Button, Text } from 'react-native';
 
-import Idea from './Idea.js';
-import Comment from './Comment.js';
-import DataStore from './DataStore.js';
-
-let idea = new Idea("ASP.NET web app");
-let comment = new Comment("De naam wordt TCG Masters");
-let comment2 = new Comment("Draait op een server van AWS Lightsail");
-idea.addComment(comment);
-idea.addComment(comment2);
-
-let ideaStore = new DataStore();
-ideaStore.addIdea(idea);
-
 const IdeaScreen = () => {
   return (
     <View>
