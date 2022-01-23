@@ -24,13 +24,13 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="OverviewScreen"
-          component={OverviewScreen}
-          options={{title: "All my ideas"}}
-        />
-        <Stack.Screen 
+          options={{ title: "All my ideas" }}>
+          {(props) => <OverviewScreen {...props} data={ideaStore} />}
+        </Stack.Screen>
+        <Stack.Screen
           name="IdeaScreen"
           component={IdeaScreen}
-          options={{title: "My idea"}}
+          options={{ title: "My idea" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
