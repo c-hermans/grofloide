@@ -12,6 +12,7 @@ idea.addComment(comment);
 idea.addComment(comment2);
 
 let ideaStore = new DataStore();
+ideaStore.addIdea(idea);
 
 const IdeaScreen = () => {
   return (
