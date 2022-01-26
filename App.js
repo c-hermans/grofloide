@@ -10,6 +10,7 @@ import OverviewScreen from './OverviewScreen';
 const Stack = createNativeStackNavigator();
 
 let idea = new Idea("ASP.NET web app");
+let idea2 = new Idea("Spring boot app");
 let comment = new Comment("De naam wordt TCG Masters");
 let comment2 = new Comment("Draait op een server van AWS Lightsail");
 idea.addComment(comment);
@@ -17,6 +18,8 @@ idea.addComment(comment2);
 
 let ideaStore = new DataStore();
 ideaStore.addIdea(idea);
+ideaStore.addIdea(idea2);
+
 
 const App = () => {
   return (
