@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
-const OverviewScreen = (props) => {
-    const ideaStore = props.data;
+const OverviewScreen = ({navigation, data}) => {
+    const ideaStore = data;
     return (
         <View style={styles.container}>
-            <FlatList data={ideaStore.getAllIdeas()} renderItem={({item }) => <Text style={styles.item}>{item.title}</Text>} />
+            <FlatList data={ideaStore.getAllIdeas()} renderItem={({ item }) =>
+                <Pressable onPress={() => navigation.navigate('IdeaScreen', {title: item.title})}>
+                    <Text style={styles.item}>{item.title}</Text>
+                </Pressable>
+            } />
         </View>
     );
 }
