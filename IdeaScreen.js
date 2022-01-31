@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, Button, Text } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 
 const IdeaScreen = ({route}) => {
-  const {title} = route.params
+  const {idea} = route.params
   return (
     <View>
-      <Text>{title}</Text>
+      <Text>{idea.title}</Text>
+      <FlatList data={idea.comments} renderItem={({ item }) =>
+                    <Text>{item.content}</Text>
+            } />
     </View>
   );
 }
