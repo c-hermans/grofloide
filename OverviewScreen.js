@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
-const OverviewScreen = ({navigation, data}) => {
+const OverviewScreen = ({ navigation, data }) => {
     const ideaStore = data;
     return (
         <View style={styles.container}>
             <FlatList data={ideaStore.getAllIdeas()} renderItem={({ item }) =>
-                <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', {idea: item, name: item.title})}>
+                <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', { idea: item, name: item.title })}>
                     <Text style={styles.item}>{item.title}</Text>
                 </Pressable>
             } />
@@ -18,10 +18,12 @@ const OverviewScreen = ({navigation, data}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#54595f'
     },
     item: {
         fontSize: 25,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "#282C34"
     },
     pressable: {
         justifyContent: "center",
@@ -30,7 +32,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         fontSize: 18,
         height: 55,
-        backgroundColor: 'green'
+        backgroundColor: '#9FD356',
+        borderRadius: 10
     }
 });
 
