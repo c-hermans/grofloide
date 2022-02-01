@@ -7,7 +7,7 @@ const OverviewScreen = ({navigation, data}) => {
     return (
         <View style={styles.container}>
             <FlatList data={ideaStore.getAllIdeas()} renderItem={({ item }) =>
-                <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', {idea: item})}>
+                <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', {idea: item, name: item.title})}>
                     <Text style={styles.item}>{item.title}</Text>
                 </Pressable>
             } />

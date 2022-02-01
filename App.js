@@ -24,7 +24,15 @@ ideaStore.addIdea(idea2);
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#282c34',
+          },
+          headerTintColor: 'white',
+          headerTitleAlign: 'center'
+        }}
+      >
         <Stack.Screen
           name="OverviewScreen"
           options={{ title: "All my ideas" }}>
@@ -33,7 +41,7 @@ const App = () => {
         <Stack.Screen
           name="IdeaScreen"
           component={IdeaScreen}
-          options={{ title: "My idea" }}
+          options={({ route }) => ({ title: route.params.name })}
         />
       </Stack.Navigator>
     </NavigationContainer>
