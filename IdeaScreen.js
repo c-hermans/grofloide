@@ -13,7 +13,7 @@ const IdeaScreen = ({ route }) => {
           </View>
         } />
       </View>
-      <AddButton />
+      <AddButton type="Comment"/>
     </View>
   );
 }

@@ -14,7 +14,7 @@ const OverviewScreen = ({ navigation, data }) => {
                     </Pressable>
                 } />
             </View>
-            <AddButton />
+            <AddButton type="Idea" />
         </View>
     );
 }

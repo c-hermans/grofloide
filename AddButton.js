@@ -1,14 +1,20 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-const AddButton = () => {
+const AddButton = ({type}) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.buttonContainer}>
-            <Pressable style={styles.addButton}>
+            <Pressable style={styles.addButton} onPress={() => NavigateToAddScreen(navigation, type)}>
                 <Text style={styles.addButtonText}>+</Text>
             </Pressable>
         </View>
     );
+}
+
+const NavigateToAddScreen = (navigation, type) => {
+    console.log("Navigate to add " + type + " screen");
 }
 
 const styles = StyleSheet.create({
