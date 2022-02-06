@@ -10,11 +10,13 @@ import OverviewScreen from './OverviewScreen';
 const Stack = createNativeStackNavigator();
 
 let idea = new Idea("ASP.NET web app");
-let idea2 = new Idea("Spring boot app");
+let idea2 = new Idea("Flutter mobile app");
 let comment = new Comment("De naam wordt TCG Masters");
 let comment2 = new Comment("Draait op een server van AWS Lightsail");
+let comment3 = new Comment("Een app voor het bijhouden van alle maandelijkse kosten");
 idea.addComment(comment);
 idea.addComment(comment2);
+idea2.addComment(comment3);
 
 let ideaStore = new DataStore();
 ideaStore.addIdea(idea);
