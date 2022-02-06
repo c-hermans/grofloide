@@ -18,19 +18,20 @@ const styles = StyleSheet.create({
         alignItems: "flex-end"
     },
     addButton: {
-        height: 100,
-        width: 100,
+        height: 90,
+        width: 90,
         borderRadius: 100,
         marginRight: 16,
         marginBottom: 16,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#000080"
+        backgroundColor: "#1F1FFF",
     },
     addButtonText: {
-        fontWeight: "bold",
-        fontSize: 75,
-        color: "white"
+        fontWeight: "normal",
+        fontSize: 60,
+        color: "#F4F4F9",
+        marginBottom: 5
     }
 });
 
