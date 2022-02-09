@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import AddButton from './AddButton.js';
+import { DataContext } from './App.js';
 
-const OverviewScreen = ({ navigation, data }) => {
-    const ideaStore = data;
+const OverviewScreen = ({ navigation }) => {
+    const {data} = useContext(DataContext);
     return (
         <View style={styles.container}>
             <View style={styles.ideaContainer}>
-                <FlatList data={ideaStore.getAllIdeas()} renderItem={({ item }) =>
+                <FlatList data={data.getAllIdeas()} renderItem={({ item }) =>
                     <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', { idea: item, name: item.title })}>
                         <Text style={styles.item}>{item.title}</Text>
                     </Pressable>

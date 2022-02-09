@@ -14,7 +14,13 @@ const AddButton = ({type}) => {
 }
 
 const NavigateToAddScreen = (navigation, type) => {
-    console.log("Navigate to add " + type + " screen");
+    if (type === "Idea") {
+        navigation.navigate("AddIdeaScreen");
+    } else if (type === "Comment") {
+        navigation.navigate("AddCommentScreen");
+    } else {
+        navigation.navigate("OverviewScreen");
+    }
 }
 
 const styles = StyleSheet.create({
