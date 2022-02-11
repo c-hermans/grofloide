@@ -1,35 +1,48 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useReducer, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import IdeaScreen from './IdeaScreen';
-import Idea from './Idea.js';
-import Comment from './Comment.js';
-import DataStore from './DataStore.js';
 import OverviewScreen from './OverviewScreen';
 import AddIdeaScreen from './AddIdeaScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
-
-let idea = new Idea("ASP.NET web app");
-let idea2 = new Idea("Flutter mobile app");
-let comment = new Comment("De naam wordt TCG Masters");
-let comment2 = new Comment("Draait op een server van AWS Lightsail");
-let comment3 = new Comment("Een app voor het bijhouden van alle maandelijkse kosten");
-idea.addComment(comment);
-idea.addComment(comment2);
-idea2.addComment(comment3);
-
-let ideaStore = new DataStore();
-ideaStore.addIdea(idea);
-ideaStore.addIdea(idea2);
 
 export const DataContext = createContext();
 
 const App = () => {
-  const [data, setData] = useState(ideaStore);
+  const [ideaList, setIdeaList] = useState([]);
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('ideas')
+      if (value !== null) {
+        setIdeaList(JSON.parse(value));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('ideas', jsonValue)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  useEffect(() => {
+    storeData(ideaList)
+  }, [ideaList])
 
   return (
-    <DataContext.Provider value={{ data, setData }}>
+    <DataContext.Provider value={{ ideaList, setIdeaList, storeData }}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{

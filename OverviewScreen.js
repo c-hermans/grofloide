@@ -5,16 +5,17 @@ import AddButton from './AddButton.js';
 import { DataContext } from './App.js';
 
 const OverviewScreen = ({ navigation }) => {
-    const {data} = useContext(DataContext);
+    const {ideaList} = useContext(DataContext);
     return (
         <View style={styles.container}>
             <View style={styles.ideaContainer}>
-                <FlatList data={data.getAllIdeas()} renderItem={({ item }) =>
+                <FlatList data={ideaList} renderItem={({ item }) =>
                     <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', { idea: item, name: item.title })}>
                         <Text style={styles.item}>{item.title}</Text>
                     </Pressable>
                 } />
             </View>
+            <Text></Text>
             <AddButton type="Idea" />
         </View>
     );
