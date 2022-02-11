@@ -2,25 +2,26 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-const AddButton = ({type}) => {
+const AddButton = ({type, idea}) => {
     const navigation = useNavigation();
+
+    const NavigateToAddScreen = (type, idea) => {
+        if (type === "Idea") {
+            navigation.navigate("AddIdeaScreen");
+        } else if (type === "Comment") {
+            navigation.navigate("AddCommentScreen", {idea});
+        } else {
+            navigation.navigate("OverviewScreen");
+        }
+    }
+
     return (
         <View style={styles.buttonContainer}>
-            <Pressable style={styles.addButton} onPress={() => NavigateToAddScreen(navigation, type)}>
+            <Pressable style={styles.addButton} onPress={() => NavigateToAddScreen(type, idea)}>
                 <Text style={styles.addButtonText}>+</Text>
             </Pressable>
         </View>
     );
-}
-
-const NavigateToAddScreen = (navigation, type) => {
-    if (type === "Idea") {
-        navigation.navigate("AddIdeaScreen");
-    } else if (type === "Comment") {
-        navigation.navigate("AddCommentScreen");
-    } else {
-        navigation.navigate("OverviewScreen");
-    }
 }
 
 const styles = StyleSheet.create({

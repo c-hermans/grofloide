@@ -5,6 +5,7 @@ import IdeaScreen from './IdeaScreen';
 import OverviewScreen from './OverviewScreen';
 import AddIdeaScreen from './AddIdeaScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AddCommentScreen from './AddCommentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,11 @@ const App = () => {
             name="AddIdeaScreen"
             component={AddIdeaScreen}
             options={{ title: "New idea" }}>
+          </Stack.Screen>
+          <Stack.Screen
+            name="AddCommentScreen"
+            component={AddCommentScreen}
+            options={{ title: "New comment" }}>
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
