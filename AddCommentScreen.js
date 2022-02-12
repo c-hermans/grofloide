@@ -10,7 +10,10 @@ const AddCommentScreen = ({route}) => {
     const {ideaList, setIdeaList} = useContext(DataContext);
 
     const AddComment = () => {
-        console.log(value)
+        const objIndex = ideaList.findIndex(obj => obj.title === idea.title)
+        ideaList[objIndex].comments.push(value);
+        setIdeaList([...ideaList])
+        navigation.navigate('IdeaScreen', { idea: idea, name: idea.title })
     }
 
     return (

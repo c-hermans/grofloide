@@ -9,7 +9,7 @@ const IdeaScreen = ({ route }) => {
       <View style={styles.commentContainer}>
         <FlatList data={idea.comments} renderItem={({ item }) =>
           <View style={styles.pressable}>
-            <Text style={styles.item}>{item.content}</Text>
+            <Text style={styles.item}>{item}</Text>
           </View>
         } />
       </View>

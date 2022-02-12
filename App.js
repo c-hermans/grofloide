@@ -40,6 +40,7 @@ const App = () => {
 
   useEffect(() => {
     storeData(ideaList)
+    console.log("comments stored")
   }, [ideaList])
 
   return (
