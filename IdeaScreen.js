@@ -1,19 +1,48 @@
-import React from 'react';
-import { View, FlatList, Text, StyleSheet } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, FlatList, Text, StyleSheet, Pressable, Alert } from 'react-native';
 import AddButton from './AddButton';
+import { DataContext } from './App';
 
 const IdeaScreen = ({ route }) => {
   const { idea } = route.params
+  const { ideaList, setIdeaList } = useContext(DataContext);
+  const [isPressed, setPressed] = useState(false);
+
+  useEffect(() => {
+    console.log(isPressed)
+  }, [isPressed])
+
+  const AlertDeletion = (item) => {
+    Alert.alert("Delete comment", "Do you want to delete the comment: \"" + item + "\"",
+      [{
+        text: 'Yes',
+        onPress: () => {
+          const indexIdea = ideaList.findIndex(i => i.title === idea.title)
+          const indexComment = ideaList[indexIdea].comments.indexOf(item)
+          ideaList[indexIdea].comments.splice(indexComment, 1)
+          setIdeaList([...ideaList])
+        }
+      },
+      {
+        text: 'No'
+      }])
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.commentContainer}>
         <FlatList data={idea.comments} renderItem={({ item }) =>
-          <View style={styles.pressable}>
+          <Pressable style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? '#A9400F' : '#D45113'
+            }, 
+            styles.pressable
+          ]} onLongPress={() => AlertDeletion(item)} delayLongPress={1000}>
             <Text style={styles.item}>{item}</Text>
-          </View>
+          </Pressable>
         } />
       </View>
-      <AddButton type="Comment" idea={idea}/>
+      <AddButton type="Comment" idea={idea} />
     </View>
   );
 }
@@ -38,7 +67,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     fontSize: 18,
     padding: 10,
-    backgroundColor: '#D45113',
     borderRadius: 10
   }
 });
