@@ -6,11 +6,6 @@ import { DataContext } from './App';
 const IdeaScreen = ({ route }) => {
   const { idea } = route.params
   const { ideaList, setIdeaList } = useContext(DataContext);
-  const [isPressed, setPressed] = useState(false);
-
-  useEffect(() => {
-    console.log(isPressed)
-  }, [isPressed])
 
   const AlertDeletion = (item) => {
     Alert.alert("Delete comment", "Do you want to delete the comment: \"" + item + "\"",

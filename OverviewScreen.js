@@ -1,16 +1,38 @@
 import React, { useContext } from 'react';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button, Alert } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import AddButton from './AddButton.js';
 import { DataContext } from './App.js';
 
 const OverviewScreen = ({ navigation }) => {
-    const {ideaList} = useContext(DataContext);
+    const { ideaList, setIdeaList } = useContext(DataContext);
+
+    const AlertDeletion = (item) => {
+        Alert.alert("Delete comment", "Do you want to delete the idea: \"" + item.title + "\"",
+            [{
+                text: 'Yes',
+                onPress: () => {
+                    const indexIdea = ideaList.findIndex(i => i.title === item.title)
+                    ideaList.splice(indexIdea, 1)
+                    setIdeaList([...ideaList])
+                }
+            },
+            {
+                text: 'No'
+            }])
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.ideaContainer}>
                 <FlatList data={ideaList} renderItem={({ item }) =>
-                    <Pressable style={styles.pressable} onPress={() => navigation.navigate('IdeaScreen', { idea: item, name: item.title })}>
+                    <Pressable style={({ pressed }) => [
+                        {
+                            backgroundColor: pressed ? '#86C332' : '#9FD356'
+                        },
+                        styles.pressable
+                    ]} onPress={() => navigation.navigate('IdeaScreen', { idea: item, name: item.title })}
+                        onLongPress={() => AlertDeletion(item)} delayLongPress={1000}>
                         <Text style={styles.item}>{item.title}</Text>
                     </Pressable>
                 } />
@@ -41,7 +63,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
         fontSize: 18,
         height: 55,
-        backgroundColor: '#9FD356',
         borderRadius: 10
     }
 });
