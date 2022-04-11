@@ -18,8 +18,9 @@ const AddCommentScreen = ({route}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>Enter your comment on the idea: {idea.title}</Text>
-            <TextInput style={styles.input} placeholder="My new idea" value={value} onChangeText={newValue => setValue(newValue)}></TextInput>
+            <Text style={styles.titleText}>Enter your comment on the idea:</Text>
+            <Text style={styles.titleText}>{idea.title}</Text>
+            <TextInput style={styles.input} placeholder="My new comment" value={value} onChangeText={newValue => setValue(newValue)}></TextInput>
             <Pressable style={styles.addButton} onPress={() => AddComment()}>
                 <Text style={styles.addButtonText}>Add new comment</Text>
             </Pressable>
@@ -32,25 +33,31 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#54595f',
         alignItems: "center",
+        justifyContent: "center",
+        marginTop: -40
     },
     titleText: {
+        fontSize: 20,
         color: "#F4F4F9",
-        marginTop: 50
     },
     input: {
         backgroundColor: "#F4F4F9",
         color: "#282C34",
         width: 200,
         alignContent: "center",
+        textAlign: "center",
         marginTop: 50,
-        textAlign: "center"
+        borderRadius: 10
     },
     addButton: {
-        marginTop: 50,
         height: 35,
         backgroundColor: '#9FD356',
+        alignItems: "center",
         justifyContent: "center",
-        padding: 8
+        padding: 8,
+        marginTop: 20,
+        width: 200,
+        borderRadius: 10
     },
     addButtonText: {
         color: "#282C34"
