@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-native';
 import { DataContext } from './App';
 import Idea from './Idea';
 
@@ -10,13 +10,19 @@ const AddIdeaScreen = () => {
     const {ideaList, setIdeaList, storeData} = useContext(DataContext);
 
     const AddIdea = () => {
-        setIdeaList([...ideaList, new Idea(value, [])]);
-        navigation.navigate("OverviewScreen");
+        let countWords = value.match(/\S+/g) || [];
+        console.log(countWords.length);
+        if (countWords.length > 0 && countWords.length < 6) {
+            setIdeaList([...ideaList, new Idea(value, [])]);
+            navigation.navigate("OverviewScreen");
+        } else {
+            Alert.alert("Wrong input", "Your idea contains " + countWords.length + " words. Try formulating it in 1 to 5 words.");
+        }
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.titleText}>Enter 1 to 5 words as your new idea</Text>
+            <Text style={styles.titleText}>Enter 1 to 5 words for describing your new idea</Text>
             <TextInput style={styles.input} placeholder="My new idea" value={value} onChangeText={newValue => setValue(newValue)}></TextInput>
             <Pressable style={styles.addButton} onPress={() => AddIdea()}>
                 <Text style={styles.addButtonText}>Add new idea</Text>
@@ -34,6 +40,9 @@ const styles = StyleSheet.create({
         marginTop: -40
     },
     titleText: {
+        flexWrap: 'wrap',
+        textAlign: "center",
+        width: 300,
         fontSize: 20,
         color: "#F4F4F9",
     },
