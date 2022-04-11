@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, FlatList, Text, StyleSheet, Pressable, Alert } from 'react-native';
 import AddButton from './AddButton';
-import { DataContext } from './App';
+import { DataContext } from '../App';
 
 const IdeaScreen = ({ route }) => {
   const { idea } = route.params

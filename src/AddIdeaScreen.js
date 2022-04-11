@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Pressable, Alert } from 'react-native';
-import { DataContext } from './App';
+import { DataContext } from '../App';
 import Idea from './Idea';
 
 const AddIdeaScreen = () => {

@@ -1,11 +1,11 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import IdeaScreen from './IdeaScreen';
-import OverviewScreen from './OverviewScreen';
-import AddIdeaScreen from './AddIdeaScreen';
+import IdeaScreen from './src/IdeaScreen';
+import OverviewScreen from './src/OverviewScreen';
+import AddIdeaScreen from './src/AddIdeaScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AddCommentScreen from './AddCommentScreen';
+import AddCommentScreen from './src/AddCommentScreen';
 
 const Stack = createNativeStackNavigator();
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, Button, Alert } from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import AddButton from './AddButton.js';
-import { DataContext } from './App.js';
+import { DataContext } from '../App.js';
 
 const OverviewScreen = ({ navigation }) => {
     const { ideaList, setIdeaList } = useContext(DataContext);
